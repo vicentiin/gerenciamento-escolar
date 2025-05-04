@@ -20,7 +20,7 @@ class Pessoa(models.Model):
 
 class Aluno(Pessoa):
     matricula = models.AutoField(primary_key=True)
-    turma = models.ForeignKey('turmas.Turma', on_delete=models.RESTRICT, related_name='alunos')
+    turma = models.ForeignKey('turmas.Turma', on_delete=models.RESTRICT, related_name='alunos', null=True)
     
     class Meta:
         ordering = ['nome']
@@ -34,7 +34,7 @@ class Coordenador(Pessoa):
     matricula = models.AutoField(primary_key=True)
     senha = models.CharField(max_length=128, null=False, verbose_name='Senha')
     segmento = models.IntegerField(choices=SegmentoChoices.choices, default=SegmentoChoices.SEM_SEGMENTO)
-    #referenciar turma
+    turma = models.ForeignKey('turmas.Turma', on_delete=models.RESTRICT, verbose_name='Turma',related_name='coordenador_turma', null=True)
 
     class Meta:
         ordering = ['nome','segmento'] #type: ignore
@@ -48,8 +48,8 @@ class Coordenador(Pessoa):
 class Professor(Pessoa):
     matricula = models.AutoField(primary_key=True)
     senha = models.CharField(max_length=128, null=False, verbose_name='Senha')
-    segmento = models.IntegerField(choices=SegmentoChoices.choices, default=SegmentoChoices.SEM_SEGMENTO)
-    #referenciar turma_disciplina
+    segmento = models.IntegerField(choices=SegmentoChoices.choices, default=SegmentoChoices.SEM_SEGMENTO, verbose_name='Segmento')
+    turma_disciplina = models.ForeignKey('turmas.Turma_Disciplina', on_delete=models.RESTRICT, null=True, verbose_name='Turma e Disciplina', related_name='professor_turma_disciplina')
 
     class Meta:
         ordering = ['nome','segmento'] #type: ignore
