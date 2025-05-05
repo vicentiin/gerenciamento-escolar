@@ -6,6 +6,7 @@ class AvaliacaoAdmin(admin.ModelAdmin):
     list_display = ('titulo', 'descricao', 'arquivo', 'status', 'disciplina', 'turmas')
     search_fields = ('titulo', 'turma_disciplina__disciplina__nome',)
     list_filter = ('status',)
+    filter_horizontal = ('turma_disciplina',)
 
     def disciplina(self, obj):
         return obj.turma_disciplina.disciplina.nome
@@ -18,6 +19,7 @@ class AvaliacaoAdmin(admin.ModelAdmin):
         else:
             return ""
     turmas.short_description = 'Turmas'
+
 
 @admin.register(Nota)
 class NotaAdmin(admin.ModelAdmin):
