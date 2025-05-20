@@ -45,7 +45,7 @@ class Turma_Disciplina(models.Model):
 
 class Falta(models.Model):
     aluno = models.ForeignKey('usuarios.Aluno', on_delete=models.CASCADE, related_name='falta_aluno')
-    turma_disciplina = models.ForeignKey(Turma_Disciplina, on_delete=models.RESTRICT, related_name='faltas', null=True)
+    turma_disciplina = models.ForeignKey(Turma_Disciplina, on_delete=models.RESTRICT, related_name='faltas')
     data = models.DateField(null=False, verbose_name='Data')
     status = models.BooleanField(default=False, verbose_name='Falta')
     update_at = models.DateTimeField(auto_now=True, verbose_name='Atualizado em')
