@@ -4,7 +4,7 @@ from django.db import models #type: ignore
 class Turma(models.Model):
     numero = models.CharField(max_length=3, null=False, verbose_name='Numero')
     sala = models.CharField(max_length=3, null=False, verbose_name='Numero da sala')
-    quantidade_maxima = models.IntegerField(null=False, verbose_name='Qauntidade máxima de alunos')
+    quantidade_maxima = models.IntegerField(null=False, verbose_name='Quantidade máxima de alunos')
     status = models.BooleanField(default=True, verbose_name='Ativa')
     update_at = models.DateTimeField(auto_now=True, verbose_name='Atualizado em')
 
