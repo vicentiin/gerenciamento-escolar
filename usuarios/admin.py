@@ -16,12 +16,12 @@ class AlunosAdmin(admin.ModelAdmin):
 
     def export_to_csv(self, request, queryset): 
         response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename = "products.csv"'
+        response['Content-Disposition'] = 'attachment; filename = "alunos.csv"'
         writer = csv.writer(response)
         writer.writerow(['matricula', 'nome', 'cpf', 'data de nascimento', 'turma', 'status', 'criado em', 'atualizado em'])
-        for products in queryset:
-            writer.writerow([aluno.matricula, aluno.nome, aluno.cpf, aluno.data_nascimento, aluno.turma.numero, aluno.status, #type:ignore
-                             aluno.crate_at, aluno.update_at]) #type: ignore
+        for aluno in queryset:
+            writer.writerow([aluno.matricula, aluno.nome, aluno.cpf, aluno.data_nascimento, aluno.turma.numero, aluno.status, 
+                             aluno.create_at, aluno.update_at]) 
         return response
     
     export_to_csv.short_description = 'Exportar para CSV'

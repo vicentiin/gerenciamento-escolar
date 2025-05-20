@@ -44,7 +44,7 @@ class TurmaDisciplinaAdmin(admin.ModelAdmin):
 
 @admin.register(Falta)
 class FaltaAdmin(admin.ModelAdmin):
-    list_display = ('nome_aluno', 'nome_disciplina', 'data', 'status_formatado', 'update_at')
+    list_display = ('nome_aluno', 'nome_disciplina', 'turma_disciplina', 'data', 'status_formatado', 'update_at')
     search_fields = ('aluno__nome', 'data',)
     list_filter = ('aluno__status',)
 
@@ -53,8 +53,12 @@ class FaltaAdmin(admin.ModelAdmin):
     nome_aluno.short_description = 'Aluno'
 
     def nome_disciplina(self, obj):
-        return obj.disciplina.nome
+        return obj.turma_disciplina.disciplina.nome
     nome_disciplina.short_description = 'Disciplina'
+
+    def turma_disciplina(self, obj):
+        return obj.turma_disciplina.turma.numero
+    turma_disciplina.short_description = 'Turma'
 
     def status_aluno(self, obj):
         return obj.aluno.status
