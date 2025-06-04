@@ -4,6 +4,7 @@ import csv
 from django.http import HttpResponse #type: ignore
 # Register your models here.
 
+
 @admin.register(Aluno)
 class AlunosAdmin(admin.ModelAdmin):
     list_display = ('matricula', 'nome', 'cpf', 'data_nascimento', 'numero_turma', 'status', 'create_at', 'update_at')
@@ -34,15 +35,15 @@ class ProfessorAdmin(admin.ModelAdmin):
     list_filter = ('status',)
 
     def turma(self, obj):
-        turmas = obj.turma_disciplina.all()
-        if turmas.count() > 0:
-            return ", ".join([turma_disciplina.turma.numero for turma_disciplina in turmas])
-        else:
-            ""
+        if obj.turma_disciplina:
+            return obj.turma_disciplina.turma.numero
+        return "-"
     turma.short_description = 'Turmas'
 
     def disciplina(self, obj):
-        return obj.turma_disciplina.disciplina.nome
+        if obj.turma_disciplina:
+            return obj.turma_disciplina.disciplina.nome
+        return "-"
     disciplina.short_description = 'Disciplina'
 
 @admin.register(Coordenador)

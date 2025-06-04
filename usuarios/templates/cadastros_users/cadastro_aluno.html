@@ -1,0 +1,39 @@
+{% extends 'base_cadastro.html '%}
+
+{% block title%} Cadastro de Aluno {% endblock %}
+
+{% block forms%}
+    <form action = "{{form_action}}" method="POST">
+
+        {% csrf_token %}
+
+        <h2> Cadastrar novo aluno </h2>
+
+        <div class="input-data">
+            {{form.nome}}
+            <div class = "underline"></div>
+            <label for="{{ form.nome.id_for_label }}">Nome: </label>
+        </div>
+
+        <div class="input-data">
+            {{form.cpf}}
+            <div class = "underline"></div>
+            <label for="{{ form.cpf.id_for_label }}">CPF: </label>
+        </div>
+
+        <div class="input-data">
+            {{form.data_nascimento}}
+            <div class = "underline"></div>
+            <label for="{{ form.data_nascimento.id_for_label }}">Nascimento: </label>
+        </div>
+
+        <div class="input-data">
+            {{form.senha}}
+            <div class = "underline"></div>
+            <label for="{{ form.senha.id_for_label }}">Senha: </label>
+        </div>
+
+
+        <button type="submit"> Cadastrar </button>
+    </form>
+{% endblock %}

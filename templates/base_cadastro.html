@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% block title %}Base Cadastro{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+    <body>
+
+        {% block forms %}
+            <div class="container-cadastro">
+                <form action = "{{form_action}}" method="POST">
+
+                    <h1>{% block title_form %} Cadastro {% endblock %}</h1>
+
+                    {% csrf_token %}
+
+                    {{form.as_p}}
+
+                    <button type="submit"> Cadastrar </button>
+                </form>
+            </div>
+        {% endblock %}  
+      
+        <script src="" async defer></script>
+    </body>
+</html>

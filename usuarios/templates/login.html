@@ -1,0 +1,28 @@
+{% extends 'base_cadastro.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block forms%}
+    <form action = "{{form_action}}" method="POST">
+
+        {% csrf_token %}
+
+        <h2> Bem-vindo </h2>
+
+        <div class="input-data">
+            <input type="text" name="username" required>
+            <div class="underline"></div>
+            <label>Nome:</label>
+        </div>
+
+        <div class="input-data">
+            <input type="password" name="password" required>
+            <div class="underline"></div>
+            <label>Senha:</label>
+        </div>
+
+
+        <button type="submit"> Login </button>
+    </form>
+
+{% endblock %}
