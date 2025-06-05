@@ -3,13 +3,17 @@ from .models import Avaliacao, Nota
 
 @admin.register(Avaliacao)
 class AvaliacaoAdmin(admin.ModelAdmin):
-    list_display = ('titulo', 'descricao', 'arquivo', 'status', 'disciplina', 'turmas')
-    search_fields = ('titulo', 'turma_disciplina__disciplina__nome',)
+    list_display = ('titulo', 'descricao', 'arquivo', 'status', 'disciplina', 'turmas', 'data_aplicacao', 'periodo_letivo')
+    search_fields = ('titulo', 'turma_disciplina__disciplina__nome', 'data_aplicacao', )
     list_filter = ('status',)
     filter_horizontal = ('turma_disciplina',)
 
     def disciplina(self, obj):
-        return obj.turma_disciplina.disciplina.nome
+        disciplinas = obj.turma_disciplina.all()
+        if disciplinas.count() > 0:
+            return ", ".join([turma_disciplina.disciplina.nome for turma_disciplina in disciplinas])
+        else:
+            return ""
     disciplina.short_description = 'Disciplina'
 
     def turmas(self, obj):

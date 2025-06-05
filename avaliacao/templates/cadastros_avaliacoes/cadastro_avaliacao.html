@@ -1,0 +1,56 @@
+{% extends 'base_cadastro.html' %}
+
+{% block title%} Cadastro de Avaliação {% endblock %}
+
+{% block forms%}
+    <form action = "{{form_action}}" method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <h2> Cadastrar nova Avaliação </h2>
+
+        <div class="input-data">
+            {{form.titulo}}
+            <div class = "underline"></div>
+            <label for="{{ form.titulo.id_for_label }}">Titulo: </label>
+        </div>
+
+        <div class="input-data">
+            {{form.descricao}}
+            <div class = "underline"></div>
+            <label for="{{ form.descricao.id_for_label }}">Descrição: </label>
+        </div>
+
+        <div class="input-data">
+            {{form.arquivo}}
+            <div class = "underline"></div>
+            <label for="{{ form.arquivo.id_for_label }}">arquivo: </label>
+        </div>
+
+        <div class="input-data">
+            {{form.status}}
+            <div class = "underline"></div>
+            <label for="{{ form.status.id_for_label }}">Status: </label>
+        </div>
+
+        <div class="input-data">
+            {{form.turma_disciplina}}
+            <div class = "underline"></div>
+            <label for="{{ form.turma_disciplina.id_for_label }}">Turma e Disciplina: </label>
+        </div>
+
+        <div class="input-data">
+            {{form.data_aplicacao}}
+            <div class = "underline"></div>
+            <label for="{{ form.data_aplicacao.id_for_label }}">Dia da aplicação: </label>
+        </div>
+
+        <div class="input-data">
+            {{form.periodo_letivo}}
+            <div class = "underline"></div>
+            <label for="{{ form.periodo_letivo.id_for_label }}">Período: </label>
+        </div>
+
+        <button type="submit"> Cadastrar </button>
+    </form>
+{% endblock %}

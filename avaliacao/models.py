@@ -11,6 +11,11 @@ class RelevanciaChoices(models.IntegerChoices):
     BAIXA = 3, 'Baixa'
     NENHUMA = 0, 'Sem relevância'
 
+class PeriodoChoices(models.IntegerChoices):
+    SELECIONAR = 0, 'Selecione um período'
+    PRIMEIRO = 1, 'Primeiro semestre'
+    SEGUNDO = 2, 'Segundo semestre'
+
 class Avaliacao(models.Model):
     titulo = models.CharField(max_length=100, null=False, verbose_name='Titulo')
     descricao = models.TextField(verbose_name='Descrição')
@@ -18,6 +23,8 @@ class Avaliacao(models.Model):
     create_at = models.DateTimeField(auto_now_add=True, verbose_name='Criado em')
     status = models.IntegerField(choices=AvalicaoChoices.choices, default=AvalicaoChoices.NAO_APLICADA, verbose_name='Status')
     turma_disciplina = models.ManyToManyField('turmas.Turma_Disciplina', verbose_name='Turma e Disciplina', related_name='avaliacao_turma_disciplina')
+    data_aplicacao = models.DateField(null=True, verbose_name='Data')
+    periodo_letivo = models.IntegerField(choices=PeriodoChoices.choices, default=PeriodoChoices.SELECIONAR, verbose_name='Período')
 
 
     class Meta:
