@@ -1,0 +1,26 @@
+{% extends 'base_cadastro.html '%}
+
+{% block title%} Cadastro de Turma e Disciplina {% endblock %}
+
+{% block forms%}
+    <form action = "{{form_action}}" method="POST">
+
+        {% csrf_token %}
+
+        <h2> Cadastrar nova Turma Disciplina </h2>
+
+        <div class="input-data">
+            {{form.turma}}
+            <div class = "underline"></div>
+            <label for="{{ form.turma.id_for_label }}">Turma: </label>
+        </div>
+
+        <div class="input-data">
+            {{form.disciplina}}
+            <div class = "underline"></div>
+            <label for="{{ form.disciplina.id_for_label }}">Disciplina: </label>
+        </div>
+
+        <button type="submit"> Cadastrar </button>
+    </form>
+{% endblock %}

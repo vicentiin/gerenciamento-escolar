@@ -1,0 +1,32 @@
+{% extends 'base_cadastro.html '%}
+
+{% block title%} Cadastro de Turma {% endblock %}
+
+{% block forms%}
+    <form action = "{{form_action}}" method="POST">
+
+        {% csrf_token %}
+
+        <h2> Cadastrar nova turma </h2>
+
+        <div class="input-data">
+            {{form.numero}}
+            <div class = "underline"></div>
+            <label for="{{ form.numero.id_for_label }}">Número: </label>
+        </div>
+
+        <div class="input-data">
+            {{form.sala}}
+            <div class = "underline"></div>
+            <label for="{{ form.sala.id_for_label }}">Sala: </label>
+        </div>
+
+        <div class="input-data">
+            {{form.quantidade_maxima}}
+            <div class = "underline"></div>
+            <label for="{{ form.quantidade_maxima.id_for_label }}">Máximo de alunos: </label>
+        </div>
+
+        <button type="submit"> Cadastrar </button>
+    </form>
+{% endblock %}

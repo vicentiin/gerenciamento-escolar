@@ -1,0 +1,20 @@
+{% extends 'base_cadastro.html '%}
+
+{% block title%} Cadastro de Disciplina {% endblock %}
+
+{% block forms%}
+    <form action = "{{form_action}}" method="POST">
+
+        {% csrf_token %}
+
+        <h2> Cadastrar nova Disciplina </h2>
+
+        <div class="input-data">
+            {{form.nome}}
+            <div class = "underline"></div>
+            <label for="{{ form.nome.id_for_label }}">Disciplina: </label>
+        </div>
+
+        <button type="submit"> Cadastrar </button>
+    </form>
+{% endblock %}
