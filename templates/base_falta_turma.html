@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% block title %} base falta e turma {% endblock title %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static "turmas.css" %}">
+    </head>
+    <body>
+
+        {% block listagem %}
+            {% for turma in turmas %}
+                <div class="btn-turmas">
+                    <button value="{{turma}}" onclick="enviarTurma(this)">{{turma}}</button>
+                </div>
+            {% endfor %}
+
+            <form action="{{form_action}}" method="POST">
+                {% csrf_token %}
+
+                <input type="hidden" name="turma_numero" value="" id="turma_numero">
+
+                <div id="alunos-container">
+                    {% for aluno in alunos %}
+                        <div class="data-container">
+                            <input type="text" value="{{ forloop.counter }}" readonly>
+                            <input type="text" value="{{ aluno }}" name="aluno_{{ forloop.counter }}" readonly>
+                            <input type="checkbox" value="falta" name="falta_{{ forloop.counter }}">
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type="submit">vai</button>
+            </form>
+        {% endblock listagem %}
+
+        <script src="{% static "app.js" %}" async defer></script>
+    </body>
+</html>

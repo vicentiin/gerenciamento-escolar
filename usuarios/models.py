@@ -1,4 +1,5 @@
 from django.db import models #type: ignore
+from django.contrib.auth.models import User
 # Create your models here.
 
 class SegmentoChoices(models.IntegerChoices):
@@ -7,6 +8,7 @@ class SegmentoChoices(models.IntegerChoices):
     SEM_SEGMENTO = 0, 'Sem segmento'
 
 class Pessoa(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     nome = models.CharField(max_length=70, null = False, verbose_name='Nome')
     cpf = models.CharField(max_length=14, null = False, verbose_name='CPF')
     data_nascimento = models.DateField(null = False, verbose_name='Data de nascimento')
@@ -20,7 +22,7 @@ class Pessoa(models.Model):
 
 class Aluno(Pessoa):
     matricula = models.AutoField(primary_key=True)
-    turma = models.ForeignKey('turmas.Turma', on_delete=models.RESTRICT, related_name='alunos', null=True)
+    turma = models.ForeignKey('turmas.Turma', on_delete=models.RESTRICT, related_name='alunos', null=True, blank=True)
     senha = senha = models.CharField(max_length=128, null=False, verbose_name='Senha', default="aluno123")
     
     
@@ -54,8 +56,7 @@ class Professor(Pessoa):
     email = models.CharField(max_length=120, verbose_name='E-mail', default='fulano@gmail.com')
     senha = models.CharField(max_length=128, null=False, verbose_name='Senha')
     segmento = models.IntegerField(choices=SegmentoChoices.choices, default=SegmentoChoices.SEM_SEGMENTO, verbose_name='Segmento')
-    turma_disciplina = models.ForeignKey('turmas.Turma_Disciplina', on_delete=models.RESTRICT, null=True, verbose_name='Turma e Disciplina', related_name='professor_turma_disciplina')
-    
+
 
     class Meta:
         ordering = ['nome','segmento'] #type: ignore

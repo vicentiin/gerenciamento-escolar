@@ -33,6 +33,7 @@ class Disciplina(models.Model):
 class Turma_Disciplina(models.Model):
     turma = models.ForeignKey(Turma, on_delete=models.RESTRICT, related_name='turma_disciplina')
     disciplina = models.ForeignKey(Disciplina, on_delete=models.RESTRICT, related_name='disciplina_turma')
+    professor = models.ForeignKey("usuarios.Professor", verbose_name="Professor", on_delete=models.RESTRICT, null=True)
 
     class Meta:
         ordering = ['turma']
@@ -46,8 +47,8 @@ class Turma_Disciplina(models.Model):
 class Falta(models.Model):
     aluno = models.ForeignKey('usuarios.Aluno', on_delete=models.CASCADE, related_name='falta_aluno')
     turma_disciplina = models.ForeignKey(Turma_Disciplina, on_delete=models.RESTRICT, related_name='faltas', null=True)
-    data = models.DateField(null=False, verbose_name='Data')
-    status = models.BooleanField(default=False, verbose_name='Falta')
+    data = models.DateField(auto_now_add=True, null=False, verbose_name='Data')
+    status = models.BooleanField(default=True, verbose_name='Falta')
     update_at = models.DateTimeField(auto_now=True, verbose_name='Atualizado em')
 
     class Meta:
@@ -56,7 +57,7 @@ class Falta(models.Model):
         verbose_name_plural = 'Faltas'
 
     def __str__(self):
-        return f"{self.aluno.nome} - {self.disciplina.nome} - {self.data} = {'Falta' if self.status else 'Presente'}"
+        return f"{self.aluno.nome} - {self.turma_disciplina.disciplina.nome} - {self.data} = {'Falta' if self.status else 'Presente'}"
     
 
 

@@ -21,6 +21,12 @@
             <label for="{{ form.disciplina.id_for_label }}">Disciplina: </label>
         </div>
 
+        <div class="input-data">
+            {{form.professor}}
+            <div class = "underline"></div>
+            <label for="{{ form.professor.id_for_label }}">Professor: </label>
+        </div>
+
         <button type="submit"> Cadastrar </button>
     </form>
 {% endblock %}

@@ -19,7 +19,7 @@ from .forms import (
 
 def cadastro_admin(request):
     if request.method == "GET":
-        data = {'form_action': reverse('cadastro_admin')}
+        data = {'form_action': reverse('usuarios:cadastro_admin')}
         return render(request, 'cadastros_users/cadastro_admin.html', data)
     else: 
         username = request.POST.get('nome')
@@ -43,7 +43,7 @@ def cadastro_admin(request):
 def cadastro_professor(request):
     if request.method == "GET":
         form = ProfessorForm()
-        data = {'form': form, 'form_action': reverse('cadastro_professor')}
+        data = {'form': form, 'form_action': reverse('usuarios:cadastro_professor')}
         return render(request, 'cadastros_users/cadastro_professor.html', data)
     else:
         username = request.POST.get('nome')
@@ -57,12 +57,13 @@ def cadastro_professor(request):
         else:
             form = ProfessorForm(request.POST or None)
             if form.is_valid():
-                form.save()
-
                 user = User.objects.create_user(username = username, email = email, password = password)
+                professor = form.save(commit = False)
+                professor.user = user
+                professor.save()
+
                 professores_group = Group.objects.get(name = 'Professores')
                 user.groups.add(professores_group)
-                user.save()
 
                 return HttpResponse('Professor Cadastrado com sucesso')
 
@@ -73,7 +74,7 @@ def cadastro_professor(request):
 def cadastro_coordenador(request):
     if request.method == "GET":
         form = CoordenadorForm()
-        data = {'form': form, 'form_action': reverse('cadastro_coordenador')}
+        data = {'form': form, 'form_action': reverse('usuarios:cadastro_coordenador')}
         return render(request, 'cadastros_users/cadastro_coordenador.html', data)
     else:
         username = request.POST.get('nome')
@@ -87,12 +88,13 @@ def cadastro_coordenador(request):
         else:
             form = CoordenadorForm(request.POST or None)
             if form.is_valid():
-                form.save()
-
                 user = User.objects.create_user(username = username, email = email, password = password)
-                alunos_group = Group.objects.get(name = 'Coordenadores')
-                user.groups.add(alunos_group)
-                user.save()
+                coordenador = form.save(commit = False)
+                coordenador.user = user
+                coordenador.save()
+                
+                coordenador_group = Group.objects.get(name = 'Coordenadores')
+                user.groups.add(coordenador_group)
 
                 return HttpResponse('Coordenador Cadastrado com sucesso')
 
@@ -101,7 +103,7 @@ def cadastro_coordenador(request):
 def cadastro_aluno(request):
     if request.method == "GET":
         form = AlunoForm()
-        data = {'form': form, 'form_action': reverse('cadastro_aluno')}
+        data = {'form': form, 'form_action': reverse('usuarios:cadastro_aluno')}
         return render(request, 'cadastros_users/cadastro_aluno.html', data)
     else:
         username = request.POST.get('nome')
@@ -116,19 +118,20 @@ def cadastro_aluno(request):
         else:
             form = AlunoForm(request.POST or None)
             if form.is_valid():
-                form.save()
-
                 user = User.objects.create_user(username = username, email = email, password = password )
+                aluno = form.save(commit = False)
+                aluno.user = user
+                aluno.save()
+
                 alunos_group = Group.objects.get(name = 'Alunos')
                 user.groups.add(alunos_group)
-                user.save()
 
                 return HttpResponse('Aluno Cadastrado com sucesso')
 
-@requires_csrf_token
+
 def login(request):
     if request.method == "GET":
-        data = {'form_action': reverse('login')}
+        data = {'form_action': reverse('usuarios:login')}
         return render(request, 'login.html', data)
     else:
         username = request.POST.get('username')
@@ -140,7 +143,7 @@ def login(request):
             login_django(request, user)
 
             #Alterar para um redirect para a página de acordo com cada user
-            return HttpResponse('autenticado')
+            return redirect('turmas:cadastro_falta')
         else:
             return HttpResponse('Senha ou usuário inválidos')
 

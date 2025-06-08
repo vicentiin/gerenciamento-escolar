@@ -53,11 +53,15 @@ class FaltaAdmin(admin.ModelAdmin):
     nome_aluno.short_description = 'Aluno'
 
     def nome_disciplina(self, obj):
-        return obj.turma_disciplina.disciplina.nome
+        if obj.turma_disciplina.disciplina:
+            return obj.turma_disciplina.disciplina.nome
+        return "sem disciplina associada"
     nome_disciplina.short_description = 'Disciplina'
 
     def turma_disciplina(self, obj):
-        return obj.turma_disciplina.turma.numero
+        if obj.turma_disciplina.turma:
+            return obj.turma_disciplina.turma.numero
+        return "sem turma associda"
     turma_disciplina.short_description = 'Turma'
 
     def status_aluno(self, obj):

@@ -12,8 +12,10 @@ class AlunosAdmin(admin.ModelAdmin):
     list_filter = ('status',)
 
     def numero_turma(self, obj):
-        return obj.turma.numero
-    numero_turma.short_descreption = 'Turma'
+        if obj.turma:
+            return obj.turma.numero
+        return "Sem turma associada"
+    numero_turma.short_description = 'Turma'
 
     def export_to_csv(self, request, queryset): 
         response = HttpResponse(content_type='text/csv')
@@ -30,11 +32,11 @@ class AlunosAdmin(admin.ModelAdmin):
 
 @admin.register(Professor)
 class ProfessorAdmin(admin.ModelAdmin):
-    list_display = ('matricula', 'nome', 'cpf', 'data_nascimento', 'segmento', 'turma', 'disciplina', 'status', 'create_at', 'update_at')
+    list_display = ('matricula', 'nome', 'cpf', 'data_nascimento', 'segmento', 'status', 'create_at', 'update_at', 'senha')
     search_fields = ('matricula', 'nome', 'cpf', 'segmento',)
     list_filter = ('status',)
 
-    def turma(self, obj):
+    """def turma(self, obj):
         if obj.turma_disciplina:
             return obj.turma_disciplina.turma.numero
         return "-"
@@ -44,7 +46,7 @@ class ProfessorAdmin(admin.ModelAdmin):
         if obj.turma_disciplina:
             return obj.turma_disciplina.disciplina.nome
         return "-"
-    disciplina.short_description = 'Disciplina'
+    disciplina.short_description = 'Disciplina'"""
 
 @admin.register(Coordenador)
 class CoordenadorAdmin(admin.ModelAdmin):
