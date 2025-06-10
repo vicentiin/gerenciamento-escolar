@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fa;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.perfil-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 500px;
+    height: 100%;
+    max-width: 400px;
+    width: 100%;
+    background-color: #f5f7fa;
+    padding: 20px;
+    border-right: 4px solid #032b4d;
+    /*border-radius: 20px   
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);*/
+}
+
+.imagem_perfil img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid #032b4d;
+}
+
+.nome input,
+.matricula input {
+    text-align: center;
+    font-weight: bold;
+    background-color: #032b4d;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    margin: 10px 0;
+}
+
+.nome input:focus,
+.matricula input:focus {
+    outline: none;
+}
+
+.divisor {
+    height: 80%;
+    width: 2px;
+    background-color: #032b4d;
+    position: absolute;
+    left: 300px;
+    top: 10%;
+}
+
+.main-content {
+    flex: 1;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 20px;
+    color: #000;
+    position: relative;
+    bottom: 180px;
+}
+
+.logo img {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 80px;
+}
+
+.btn-acesso {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 300px;
+}
+
+.acesso {
+    background-color: #032b4d;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.acesso:hover {
+    background-color: #021e35;
+}

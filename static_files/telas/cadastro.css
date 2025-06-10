@@ -1,0 +1,97 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #174e69, #3b774d);
+    color: #fff;
+    padding: 50px;
+    margin: 0;
+}
+
+form {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: #ffffff10;
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 30px rgba(0,0,0,0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+.input-data {
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.input-data input,
+.input-data textarea,
+.input-data select {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: black;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    outline: none;
+}
+
+.input-data input::placeholder,
+.input-data textarea::placeholder {
+    color: #ccc;
+}
+
+.input-data label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    pointer-events: none;
+    transition: 0.2s ease all;
+    color: #ccc;
+}
+
+.input-data input:focus ~ label,
+.input-data textarea:focus ~ label,
+.input-data input:not(:placeholder-shown) ~ label,
+.input-data textarea:not(:placeholder-shown) ~ label {
+    top: -18px;
+    font-size: 14px;
+    color: #8ce3cc;
+}
+
+.underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background-color: #8ce3cc;
+    transition: width 0.3s ease;
+}
+
+.input-data input:focus ~ .underline,
+.input-data textarea:focus ~ .underline {
+    width: 100%;
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #002b45;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0d3a5d;
+}
