@@ -157,6 +157,8 @@ def login(request):
             return HttpResponse('Senha ou usuário inválidos')
 
 
+
+
 @login_required(login_url= '/auth/login/')
 def tela_admin(request):
     if request.method == "GET":

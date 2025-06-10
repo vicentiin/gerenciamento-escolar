@@ -1,8 +1,17 @@
 {% extends "base_falta_turma.html" %}
 
+{% load static %}
+
 {% block title %} Registrar Presença {% endblock title %}
 
 {% block listagem %}
+
+    <div class="titulo">
+        <div><h1>Registrar Presença</h1></div>
+
+        <img src="{%static 'imagens/logo.png'%}">
+    </div>
+
     {% block turmas %}
         {% for turma in turmas %}
             <div class="btn-turmas">
