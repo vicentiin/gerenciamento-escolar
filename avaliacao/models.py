@@ -40,7 +40,7 @@ class Nota(models.Model):
     aluno = models.ForeignKey('usuarios.Aluno', on_delete=models.CASCADE, related_name='nota_aluno')
     avaliacao = models.ForeignKey(Avaliacao, on_delete=models.CASCADE, related_name='nota_avaliacao')
     pontuacao = models.FloatField(verbose_name='Pontuação')
-    relevancia =models.IntegerField(choices=RelevanciaChoices.choices, default=RelevanciaChoices.NENHUMA, verbose_name='Relevância')
+    relevancia =models.IntegerField(choices=RelevanciaChoices.choices, default=RelevanciaChoices.NENHUMA, verbose_name='Relevância', null=True)
 
     class Meta:
         ordering = ['pontuacao']

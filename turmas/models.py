@@ -33,9 +33,9 @@ class Disciplina(models.Model):
 class Turma_Disciplina(models.Model):
     turma = models.ForeignKey(Turma, on_delete=models.RESTRICT, related_name='turma_disciplina')
     disciplina = models.ForeignKey(Disciplina, on_delete=models.RESTRICT, related_name='disciplina_turma')
-    professor = models.ForeignKey("usuarios.Professor", verbose_name="Professor", on_delete=models.RESTRICT, null=True)
+    professor = models.ForeignKey("usuarios.Professor", verbose_name="Professor", on_delete=models.RESTRICT, null=True, related_name="prof_turma_disciplina")
 
-    class Meta:
+    class Meta: 
         ordering = ['turma']
         verbose_name = 'Turma Disciplina'
         verbose_name_plural = 'Turmas Disciplinas'

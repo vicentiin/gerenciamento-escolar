@@ -32,25 +32,27 @@ class AlunosAdmin(admin.ModelAdmin):
 
 @admin.register(Professor)
 class ProfessorAdmin(admin.ModelAdmin):
-    list_display = ('matricula', 'nome', 'cpf', 'data_nascimento', 'segmento', 'status', 'create_at', 'update_at', 'senha')
+    list_display = ('matricula', 'nome', 'cpf', 'data_nascimento', 'segmento', 'turma', 'disciplina', 'status', 'create_at', 'update_at', 'senha')
     search_fields = ('matricula', 'nome', 'cpf', 'segmento',)
     list_filter = ('status',)
 
-    """def turma(self, obj):
-        if obj.turma_disciplina:
-            return obj.turma_disciplina.turma.numero
-        return "-"
+    def turma(self, obj):
+        if obj.prof_turma_disciplina:
+            turmas = obj.prof_turma_disciplina.all()
+            return ", ".join([turma_disciplina.turma.numero for turma_disciplina in turmas])
+        return "Professor ainda não alocado"
     turma.short_description = 'Turmas'
 
     def disciplina(self, obj):
-        if obj.turma_disciplina:
-            return obj.turma_disciplina.disciplina.nome
+        if obj.prof_turma_disciplina:
+            disciplinas = obj.prof_turma_disciplina.all()
+            return ", ".join([turma_disciplina.disciplina.nome for turma_disciplina in disciplinas])
         return "-"
-    disciplina.short_description = 'Disciplina'"""
+    disciplina.short_description = 'Disciplina'
 
 @admin.register(Coordenador)
 class CoordenadorAdmin(admin.ModelAdmin):
-    list_display = ('matricula', 'nome', 'cpf', 'data_nascimento','turma', 'segmento', 'status', 'create_at', 'update_at')
+    list_display = ('matricula', 'nome', 'cpf', 'data_nascimento','turma', 'segmento', 'senha', 'status', 'create_at', 'update_at')
     search_fields = ('matricula', 'nome', 'cpf', 'segmento',)
     list_filter = ('status',)
 

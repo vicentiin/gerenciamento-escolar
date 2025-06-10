@@ -105,7 +105,7 @@ def cadastro_falta(request):
                 'turmas': turmas,   
                 'alunos': alunos
                 }
-        return render(request, 'base_falta_turma.html', data)
+        return render(request, 'cadastros_faltas/cadastro_falta.html', data)
     else:
         try:
             professor = Professor.objects.get(user=request.user)

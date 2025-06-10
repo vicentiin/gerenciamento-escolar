@@ -28,5 +28,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include(('usuarios.urls', 'usuarios'), namespace='usuarios')),
     path('auth-turmas/', include(('turmas.urls', 'turmas'), namespace='turmas')),
-    path('auth-avaliacao/', include('avaliacao.urls'))
+    path('auth-avaliacao/', include(('avaliacao.urls', 'avaliacao'), namespace='avaliacao'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

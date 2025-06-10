@@ -5,21 +5,16 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>{% block title %}Base{% endblock title %}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{% static 'telas/inicio.css' %}">
+        <link rel="stylesheet" href="{% static 'telas/logado.css' %}">
     </head>
     <body>
         
-        <div class="inicio_container">
-            <img src="{% static 'imagens/logo.png' %}">
-
-            <h1>Bem-vindo</h1>
-
-            <button class="acesso" name="entrar" onclick="window.location.href='{{go_to_login}}'">Entrar</button>
-        </div>
-        
+        {% block corpo %}
+            
+        {% endblock corpo %}
         <script src="" async defer></script>
     </body>
 </html>

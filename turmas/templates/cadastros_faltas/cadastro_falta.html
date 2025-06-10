@@ -1,0 +1,34 @@
+{% extends "base_falta_turma.html" %}
+
+{% block title %} Registrar Presença {% endblock title %}
+
+{% block listagem %}
+    {% block turmas %}
+        {% for turma in turmas %}
+            <div class="btn-turmas">
+                <button value="{{turma}}" onclick="enviarTurma(this)">{{turma}}</button>
+            </div>
+        {% endfor %}
+    {% endblock turmas %}
+
+    <form action="{{form_action}}" method="POST">
+        {% csrf_token %}
+
+        <input type="hidden" name="turma_numero" value="" id="turma_numero">
+        
+        {% block conteudo_form %}
+            {% block alunos %}
+                <div id="alunos-container">
+                    {% for aluno in alunos %}
+                        <div class="data-container">
+                            <input type="text" value="{{ forloop.counter }}" readonly>
+                            <input type="text" value="{{ aluno }}" name="aluno_{{ forloop.counter }}" readonly>
+                            <input type="checkbox" value="falta" name="falta_{{ forloop.counter }}">
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endblock alunos %}
+        {% endblock conteudo_form %}
+            <button type="submit">Enviar</button>
+    </form>
+{% endblock listagem %}

@@ -1,0 +1,41 @@
+{% extends "base_telas.html" %}
+
+{% load static %}
+
+{% block title %} Professor {% endblock title %}
+
+{% block corpo %}
+
+    <div class="container">
+        <div class="perfil-box">
+            <div class="imagem_perfil">
+                <img src="{% static 'imagens/perfil.png'%}">
+            </div>
+
+            <div class="nome">
+                <input type="text" value="{{nome}}" readonly>
+            </div>
+
+            <div class="matricula">
+                <input type="text" value="{{matricula}}" readonly>
+            </div>
+        </div>
+
+        <div class="separacao"></div>
+
+        <div class="main-content">
+            <h1>Bem-vindo ao Instituto Caminhos do Sol</h1>
+
+            <div class="logo">
+                <img src="{% static 'imagens/logo.png' %}">
+            </div>
+
+            <div class="btn-acesso">
+                <button class="acesso" onclick="window.location.href='{{cadastro_av}}'">{{funcao1}}</button>
+                <button class="acesso" onclick="window.location.href='{{cadastro_falta}}'">{{funcao2}}</button>
+                <button class="acesso" onclick="window.location.href='{{cadastro_nota}}'">{{funcao3}}</button>
+            </div>
+        </div>
+     </div>
+
+{% endblock corpo %}

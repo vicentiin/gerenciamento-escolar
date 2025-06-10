@@ -1,0 +1,43 @@
+{% extends "base_falta_turma.html" %}
+
+{% block title %}Registro de Nota{% endblock title %}
+
+{% block listagem %}
+    <div class="avaliacoes-container">
+        {% for av in avaliacoes %}
+            <button value="{{ av }}" onclick="enviarAv(this)" class="btn-avaliacao">
+                {{ av }}
+            </button>
+        {% endfor %}
+    </div>
+
+    <div id="turmas-container">
+        {% for turma in av_turmas %}
+            <div class="btn-turma">
+                <button value="{{turma}}" onclick="enviarTurmaNota(this)">{{turma}}</button>
+            </div>
+        {% empty %}
+            <p>Selecione uma avaliação para ver as turmas</p>
+        {% endfor %}
+    </div>
+
+
+    {% block conteudo_form %}
+        <input type="hidden" name="turma_numero" value="" id="turma_numero">
+
+        {% block alunos %}
+            <div id="alunos-container">
+                {% for aluno in alunos %}
+                    <div class="data-container">
+                        <input type="text" value="{{ forloop.counter }}" readonly>
+                        <input type="text" value="{{ aluno }}" name="aluno_{{ forloop.counter }}" readonly>
+                        <input type="number" name="nota_{{ forloop.counter }}">
+                    </div>
+                {% endfor %}
+            </div>
+        {% endblock alunos %}
+        
+    {% endblock conteudo_form %}
+
+    {{ block.super }}
+{% endblock %}
