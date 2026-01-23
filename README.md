@@ -24,6 +24,7 @@
 O projeto foi desenvolvido com foco em backend e aplicações web, utilizando Python e Django, com o objetivo de consolidar meus conhecimentos em desenvolvimento web, modelagem de dados e regras de negócio em um sistema real.
 
 Seja bem-vindo, contribua com o sistema, entre como admin, crie acessos.
+
 _As credenciais estão na seção "Contribuindo" neste arquivo._
 
 
